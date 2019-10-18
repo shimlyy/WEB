@@ -260,8 +260,190 @@ background-origin 属性：控制背景从什么地方开始显示。
 如果属性值设置成了border-box，那边框部分也会显示图片哦。
 
 
+渐变：background-image
+线性渐变
+格式：
 
+    background-image: linear-gradient(方向, 起始颜色, 终止颜色);
 
+    background-image: linear-gradient(to right, yellow, green);
+参数解释：
+
+方向可以是：to left、to right、to top、to bottom、角度30deg（指的是顺时针方向30°）。
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 500px;
+            height: 100px;
+            margin: 10px auto;
+            border: 1px solid #000;
+        }
+
+        /* 语法：
+            linear-gradient(方向，起始颜色，终止颜色);
+            方向：to left   to right  to top   to bottom 　角度　30deg
+            起始颜色
+            终止颜色
+        */
+        div:nth-child(1) {
+            background-image: linear-gradient(to right, yellow, green);
+        }
+
+        /* 不写方向，表示默认的方向是：从上往下 */
+        div:nth-child(2) {
+            background-image: linear-gradient(yellow, green);
+        }
+
+        /* 方向可以指定角度 */
+        div:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background-image: linear-gradient(135deg, yellow, green);
+        }
+
+        /* 0%的位置开始出现黄色，40%的位置开始出现红色的过度。70%的位置开始出现绿色的过度，100%的位置开始出现蓝色 */
+        div:nth-child(4) {
+            background-image: linear-gradient(to right,
+            yellow 0%,
+            red 40%,
+            green 70%,
+            blue 100%);
+
+        }
+
+        /* 颜色之间，出现突变 */
+        div:nth-child(5) {
+            background-image: linear-gradient(45deg,
+            yellow 0%,
+            yellow 25%,
+            blue 25%,
+            blue 50%,
+            red 50%,
+            red 75%,
+            green 75%,
+            green 100%
+            );
+        }
+
+        div:nth-child(6) {
+            background-image: linear-gradient(to right,
+            #000 0%,
+            #000 25%,
+            #fff 25%,
+            #fff 50%,
+            #000 50%,
+            #000 75%,
+            #fff 75%,
+            #fff 100%
+            );
+
+        }
+
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>
+
+举例：按钮
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3 渐变</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fcd4;
+        }
+
+        .nav {
+            width: 800px;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0 auto;
+        }
+
+        /*设置按钮基本样式*/
+        .nav a {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #e59500;
+            background-color: #FFB700;
+            background-image: linear-gradient(
+                    to bottom,
+                    #FFB700 0%,
+                    #FF8C00 100%
+            );
+        }
+
+    </style>
+</head>
+<body>
+<div class="nav">
+    <a href="javascript:;">导航1</a>
+    <a href="javascript:;">导航2</a>
+    <a href="javascript:;">导航3</a>
+    <a href="javascript:;">导航4</a>
+    <a href="javascript:;">导航5</a>
+    <a href="javascript:;">导航6</a>
+</div>
+</body>
+</html>
+
+径向渐变
+格式：
+
+	background-image: radial-gradient(辐射的半径大小, 中心的位置, 起始颜色, 终止颜色);
+
+	background-image: radial-gradient(100px at center,yellow ,green);
+
+clip-path：裁剪出元素的部分区域做展示
+clip-path属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。
+
+虽然clip-path不是背景属性，但这个属性非常强大，但往往会结合背景属性一起使用，达到一些效果。
+
+举例：（鼠标悬停时，放大裁剪的区域）
+
+    .div1 {
+        width: 320px;
+        height: 320px;
+        border: 1px solid red;
+        background: url(http://img.smyhvae.com/20191006_1410.png) no-repeat;
+        background-size: cover;
+
+        /* 裁剪出圆形区域 */
+        clip-path: circle(50px at 100px 100px);
+        transition: clip-path .4s;
+    }
+    .div1:hover{
+        /* 鼠标悬停时，裁剪出更大的圆形 */
+        clip-path: circle(80px at 100px 100px);
+    }
+clip-path属性的好处是，即使做了任何裁剪，容器的占位大小是不变的。比如上方代码中，容器的占位大小一直都是 320px * 320px。这样的话，也方便我们做一些动画效果。
 
 
 
